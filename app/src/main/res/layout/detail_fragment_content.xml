@@ -1,0 +1,95 @@
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <ImageView
+        android:id="@+id/iv_poster"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="@dimen/detail_margin_left"
+        android:layout_marginStart="@dimen/detail_margin_left"
+        android:layout_marginTop="@dimen/detail_margin_top"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@color/colorPrimary"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_star_black_18px"
+        android:id="@+id/fab_favorite_unselected"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/tv_vote_average"
+        app:layout_constraintLeft_toRightOf="@+id/iv_poster"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_overview"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_star_gold_18px"
+        android:id="@+id/fab_favorite_selected"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@+id/tv_vote_average"
+        app:layout_constraintLeft_toRightOf="@+id/iv_poster"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_overview"/>
+
+    <TextView
+        style="@style/detailYearLabel"
+        android:id="@+id/tv_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/iv_poster"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_poster"
+        tools:text="2015"/>
+
+    <TextView
+        android:id="@+id/tv_duration"
+        tools:text="120min"
+        style="@style/detailOtherLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/detail_margin_between_items"
+        app:layout_constraintTop_toBottomOf="@+id/tv_year"
+        app:layout_constraintLeft_toRightOf="@+id/iv_poster"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_vote_average"
+        tools:text="5.8/10"
+        style="@style/detailOtherLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/detail_margin_between_items"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_duration"
+        app:layout_constraintRight_toRightOf="@+id/tv_duration"
+        app:layout_constraintTop_toBottomOf="@+id/tv_duration"/>
+
+
+    <TextView
+        style="@style/detailOverview"
+        android:id="@+id/tv_overview"
+        tools:text="@string/lionKing_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_movie_overview"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_poster"/>
+
+    <View
+        style="@style/boldDivisionline"
+        android:id="@+id/divisionline_description_trailer"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_overview"/>
+
+</android.support.constraint.ConstraintLayout>

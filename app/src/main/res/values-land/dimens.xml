@@ -1,0 +1,5 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="detail_margin_between_items">32dp</dimen>
+
+</resources>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="empty">Vazio</string>
+    <string name="coudntRecoverMovies">Não foi possível recuperar os filmes</string>
+    <string name="noConnectionAvailable">Não há conexões disponiveis</string>
+    <string name="trailers_label">Trailers</string>
+    <string name="reviews">Reviews</string>
+    <string name="need_browser_warning">Você precisa ter um browser para abrir este link</string>
+    <string name="network_connected">Conectado a internet</string>
+    <string name="network_disconnected">Sem conexão com a internet</string>
+
+</resources>

@@ -1,0 +1,38 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="detail_margin_left">16dp</dimen>
+    <dimen name="detail_margin_top">16dp</dimen>
+    <dimen name="detail_margin_between_items">8dp</dimen>
+    <dimen name="detail_year_label_size">30sp</dimen>
+    <dimen name="detail_other_label_size">20sp</dimen>
+
+    <dimen name="recyclerView_margin_top">8dp</dimen>
+    <dimen name="recyclerView_min_height">40dp</dimen>
+
+    <dimen name="progress_bar_width">48dp</dimen>
+    <dimen name="progress_bar_height">48dp</dimen>
+
+    <dimen name="padding_movie_grid_item">2dp</dimen>
+    <dimen name="margin_right_movie_grid_item">0dp</dimen>
+    <dimen name="margin_left_movie_grid_item">0dp</dimen>
+
+    <dimen name="padding_movie_overview">16dp</dimen>
+
+    <dimen name="division_line_width">0dp</dimen>
+    <dimen name="division_line_height">1dp</dimen>
+    <dimen name="bold_division_line_height">2dp</dimen>
+    <dimen name="division_line_margin_right">16dp</dimen>
+    <dimen name="division_line_margin_left">16dp</dimen>
+    <dimen name="division_line_margin_top">8dp</dimen>
+
+    <dimen name="list_item_margin_right">16dp</dimen>
+    <dimen name="list_item_margin_left">16dp</dimen>
+    <dimen name="list_item_margin_top">8dp</dimen>
+    <dimen name="list_item_image_margin_bot">8dp</dimen>
+    <dimen name="list_item_small_imageView_width">30dp</dimen>
+    <dimen name="list_item_small_imageView_height">30dp</dimen>
+
+</resources>

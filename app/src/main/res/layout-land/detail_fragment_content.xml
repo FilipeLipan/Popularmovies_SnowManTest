@@ -1,0 +1,106 @@
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:minHeight="225dp">
+
+
+    <ImageView
+        android:id="@+id/iv_poster"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="@dimen/detail_margin_left"
+        android:layout_marginStart="@dimen/detail_margin_left"
+        android:layout_marginTop="@dimen/detail_margin_top"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@color/colorPrimary"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_star_black_18px"
+        android:id="@+id/fab_favorite_unselected"
+        android:visibility="visible"
+        android:layout_marginStart="@dimen/detail_margin_between_items"
+        android:layout_marginLeft="@dimen/detail_margin_between_items"
+        app:layout_constraintLeft_toRightOf="@+id/iv_poster"
+        app:layout_constraintTop_toTopOf="@+id/iv_poster"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_star_gold_18px"
+        android:id="@+id/fab_favorite_selected"
+        android:visibility="invisible"
+        android:layout_marginStart="@dimen/detail_margin_between_items"
+        android:layout_marginLeft="@dimen/detail_margin_between_items"
+        app:layout_constraintLeft_toRightOf="@+id/iv_poster"
+        app:layout_constraintTop_toTopOf="@+id/iv_poster"/>
+
+    <TextView
+        style="@style/detailYearLabel"
+        android:id="@+id/tv_year"
+        tools:text="2015"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/detail_margin_between_items"
+        android:layout_marginLeft="@dimen/detail_margin_between_items"
+        app:layout_constraintTop_toTopOf="@+id/fab_favorite_unselected"
+        app:layout_constraintLeft_toRightOf="@+id/fab_favorite_unselected"
+        app:layout_constraintRight_toLeftOf="@+id/horizontal_middle"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/horizontal_middle"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6807432"
+        tools:layout_editor_absoluteX="403dp"
+        tools:layout_editor_absoluteY="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_duration"
+        tools:text="120min"
+        style="@style/detailOtherLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_year"
+        app:layout_constraintTop_toTopOf="@+id/tv_year"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/horizontal_middle"/>
+
+    <TextView
+        android:id="@+id/tv_vote_average"
+        tools:text="5.8/10"
+        style="@style/detailOtherLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_year"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_year"
+        app:layout_constraintRight_toRightOf="@+id/tv_duration"/>
+
+
+    <TextView
+        style="@style/detailOverview"
+        android:id="@+id/tv_overview"
+        tools:text="@string/lionKing_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_movie_overview"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/iv_poster"
+        app:layout_constraintTop_toBottomOf="@+id/tv_vote_average"/>
+
+    <View
+        style="@style/boldDivisionline"
+        android:id="@+id/divisionline_description_trailer"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

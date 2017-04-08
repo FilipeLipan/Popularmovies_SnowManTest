@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="20dp">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        style="@style/listItemSmallImage"
+        android:layout_marginBottom="@dimen/list_item_image_margin_bot"
+        android:layout_marginLeft="@dimen/list_item_margin_left"
+        android:layout_marginStart="@dimen/list_item_margin_left"
+        android:layout_marginTop="@dimen/list_item_margin_top"
+        app:layout_constraintBottom_toTopOf="@+id/division_line"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_play_circle_outline_black_24px"/>
+
+    <TextView
+        android:id="@+id/tv_trailer_list_name"
+        style="@style/listItemTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/list_item_margin_top"
+        android:layout_marginEnd="@dimen/division_line_margin_right"
+        android:layout_marginLeft="@dimen/division_line_margin_left"
+        android:layout_marginRight="@dimen/division_line_margin_right"
+        android:layout_marginStart="@dimen/division_line_margin_left"
+        android:layout_marginTop="@dimen/list_item_image_margin_bot"
+        app:layout_constraintBottom_toTopOf="@+id/division_line"
+        app:layout_constraintLeft_toRightOf="@+id/imageView"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Trailer 2"/>
+
+    <View
+        android:id="@+id/division_line"
+        style="@style/divisionline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

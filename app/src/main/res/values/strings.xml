@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Popular movies</string>
+    <string name="empty">Empty</string>
+    <string name="coudntRecoverMovies">couldn\'t recover the movies</string>
+    <string name="retrofitError">Something went wrong, but retrofit did his work</string>
+    <string name="somethingWentWrong">Something went wrong</string>
+    <string name="noConnectionAvailable">No connection available</string>
+    <string name="trailers_label">Trailers</string>
+    <string name="reviews">Reviews</string>
+    <string name="need_browser_warning">You need a browser to open this</string>
+    <string name="network_connected">Network is connected</string>
+    <string name="network_disconnected">Network is disconnected</string>
+
+
+    <!-- content provider authorities -->
+    <string name="content_authority" translatable="false">com.github.filipelipan.popularmovies</string>
+
+    <!--Content for tools -->
+    <string name="lorem_ipsum" translatable="false">Lorem ipsum dolor sit amet, consecula edasdasdmasklmdlkasm kasmdk asmodm asoi mdasoim iodasm ioasmd ioasmo idasmio dmasiomdaisom ioasm ioasm dioasmod asmoid masoiio dmaoiasmio asmoid masiodm asoim oiasm ioasio asmio dmasoimdaisom fdoiasm oias[fn[sdofnsdofficitur purus eget rutrum. Sed pulvinar fermentum risus ac viverra. Cras laoreet ligula quam, ac lacinia nisl elementum in. Aenean velit arcu, euismod a venenatis non, pulvinar pulvinar massa.</string>
+    <string name="lionKing_description" translatable="false">The Lion King is a 1994 American animated epic musical film, produced by Walt Disney Feature Animation and released by Walt Disney Pictures. It is the 32nd Disney animated feature film. The story takes place in a kingdom of lions in Africa and was influenced by William Shakespeare\'s Hamlet. The film was produced during a period known as the Disney Renaissance.</string>
+
+</resources>

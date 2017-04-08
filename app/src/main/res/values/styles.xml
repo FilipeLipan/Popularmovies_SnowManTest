@@ -1,0 +1,67 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="divisionline">
+        <item name="android:layout_width">@dimen/division_line_width</item>
+        <item name="android:layout_height">@dimen/division_line_height</item>
+        <item name="android:background">@android:color/darker_gray</item>
+        <item name="android:layout_marginLeft">@dimen/division_line_margin_left</item>
+        <item name="android:layout_marginStart">@dimen/division_line_margin_left</item>
+        <item name="android:layout_marginEnd">@dimen/division_line_margin_right</item>
+        <item name="android:layout_marginRight">@dimen/division_line_margin_right</item>
+        <item name="android:layout_marginTop">@dimen/division_line_margin_top</item>
+    </style>
+
+    <style name="boldDivisionline" parent="divisionline">
+        <item name="android:layout_height">@dimen/bold_division_line_height</item>
+    </style>
+
+
+
+    <style name="progressBar">
+        <item name="android:layout_width">@dimen/progress_bar_width</item>
+        <item name="android:layout_height">@dimen/progress_bar_height</item>
+    </style>
+
+    <style name="detailOverview">
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">sans-serif-smallcaps</item>
+    </style>
+
+    <style name="recyclerViewTitle">
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="listItemTitle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="listItemContent">
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">sans-serif-smallcaps</item>
+    </style>
+
+    <style name="detailYearLabel">
+        <item name="android:textSize">@dimen/detail_year_label_size</item>
+    </style>
+
+    <style name="detailOtherLabel">
+        <item name="android:textSize">@dimen/detail_other_label_size</item>
+    </style>
+
+    <style name="listItemSmallImage">
+        <item name="android:layout_width">@dimen/list_item_small_imageView_width</item>
+        <item name="android:layout_height">@dimen/list_item_small_imageView_height</item>
+    </style>
+
+</resources>

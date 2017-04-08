@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/layout_container_review">
+
+
+    <TextView
+        style="@style/listItemTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_review_list_author"
+        tools:text="Screen Zealots"
+        android:layout_marginTop="@dimen/list_item_margin_top"
+        android:layout_marginStart="@dimen/list_item_margin_left"
+        android:layout_marginLeft="@dimen/list_item_margin_left"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <!--TODO: make content resizable-->
+    <TextView
+        style="@style/listItemContent"
+        android:id="@+id/tv_review_list_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="@string/lorem_ipsum"
+        android:ellipsize="end"
+        android:maxLines="6"
+        android:scrollHorizontally="true"
+        android:layout_marginStart="@dimen/list_item_margin_left"
+        android:layout_marginLeft="@dimen/list_item_margin_left"
+        android:layout_marginRight="@dimen/list_item_margin_right"
+        android:layout_marginEnd="@dimen/list_item_margin_right"
+        android:layout_marginTop="@dimen/list_item_margin_top"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_review_list_author"/>
+
+
+    <View
+        style="@style/divisionline"
+        android:id="@+id/divisionline"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_review_list_content"/>
+
+</android.support.constraint.ConstraintLayout>
