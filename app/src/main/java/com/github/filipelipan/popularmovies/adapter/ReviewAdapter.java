@@ -30,6 +30,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
     private ArrayList<Review> mReviews;
     private Context mContext;
     private boolean isExpanded = true;
+    private TextView mEmptyTextView;
 
     public ReviewAdapter(ArrayList<Review> reviews, Context context){
         mReviews = reviews;
@@ -39,6 +40,14 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
     public void setReviews(ArrayList<Review> reviews) {
         mReviews = reviews;
         notifyDataSetChanged();
+    }
+
+    /**
+     * set an empty view to be show when the recyclerView is empty
+     * @param textView empty TextView that will be shown when the recyclerView is empty
+     */
+    public void setEmptyTextView(TextView textView){
+        mEmptyTextView = textView;
     }
 
     @Override
@@ -54,9 +63,21 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
 
     @Override
     public int getItemCount() {
-        if(mReviews != null){
+        if (mReviews != null) {
+            if(mEmptyTextView != null) {
+                if (mReviews.size() == 0) {
+                    mEmptyTextView.setVisibility(View.VISIBLE);
+                } else {
+                    mEmptyTextView.setVisibility(View.INVISIBLE);
+                }
+            }
             return mReviews.size();
         }
+
+        if(mEmptyTextView != null){
+            mEmptyTextView.setVisibility(View.VISIBLE);
+        }
+
         return 0;
     }
 

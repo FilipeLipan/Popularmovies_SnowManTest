@@ -2,7 +2,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         style="@style/recyclerViewTitle"
@@ -41,7 +42,19 @@
     <ProgressBar
         style="@style/progressBar"
         android:id="@+id/pb_detail_trailers"
-        android:visibility="visible"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_detail_trailers"
+        app:layout_constraintLeft_toLeftOf="@+id/rv_detail_trailers"
+        app:layout_constraintRight_toRightOf="@+id/rv_detail_trailers"
+        app:layout_constraintTop_toTopOf="@+id/tv_trailer_label"/>
+
+    <TextView
+        style="@style/emptyRecyclerView"
+        android:id="@+id/tv_detail_empty_trailers"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        android:text="@string/empty_trailers"
         app:layout_constraintBottom_toBottomOf="@+id/rv_detail_trailers"
         app:layout_constraintLeft_toLeftOf="@+id/rv_detail_trailers"
         app:layout_constraintRight_toRightOf="@+id/rv_detail_trailers"
@@ -51,6 +64,19 @@
         style="@style/progressBar"
         android:id="@+id/pb_detail_reviews"
         android:visibility="invisible"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_detail_reviews"
+        app:layout_constraintLeft_toLeftOf="@+id/rv_detail_reviews"
+        app:layout_constraintRight_toRightOf="@+id/rv_detail_reviews"
+        app:layout_constraintTop_toTopOf="@+id/tv_reviews_label"
+        />
+
+    <TextView
+        style="@style/emptyRecyclerView"
+        android:id="@+id/tv_detail_empty_reviews"
+        android:visibility="invisible"
+        android:text="@string/empty_reviews"
+        tools:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/rv_detail_reviews"
         app:layout_constraintLeft_toLeftOf="@+id/rv_detail_reviews"
         app:layout_constraintRight_toRightOf="@+id/rv_detail_reviews"

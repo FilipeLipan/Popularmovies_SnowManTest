@@ -24,6 +24,13 @@
     </style>
 
 
+    <style name="emptyRecyclerView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/empty_grid</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
 
     <style name="progressBar">
         <item name="android:layout_width">@dimen/progress_bar_width</item>

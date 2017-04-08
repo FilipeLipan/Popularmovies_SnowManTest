@@ -27,7 +27,7 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.TrailerV
 
     private ArrayList<Trailer> mTrailers;
     private Context mContext;
-    private TextView mTextView;
+    private TextView mEmptyTextView;
 
     public TrailerAdapter(ArrayList<Trailer> trailers, Context context){
         mTrailers = trailers;
@@ -39,8 +39,12 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.TrailerV
         notifyDataSetChanged();
     }
 
-    public void setEmptyTextView(){
-
+    /**
+     * set an empty view to be show when the recyclerView is empty
+     * @param textView empty TextView that will be shown when the recyclerView is empty
+     */
+    public void setEmptyTextView(TextView textView){
+        mEmptyTextView = textView;
     }
 
     @Override
@@ -56,16 +60,19 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.TrailerV
 
     @Override
     public int getItemCount() {
-        if(mTrailers != null){
-            if(mTextView != null){
-                mTextView.setVisibility(View.INVISIBLE);
+        if (mTrailers != null) {
+            if(mEmptyTextView != null) {
+                if (mTrailers.size() == 0) {
+                    mEmptyTextView.setVisibility(View.VISIBLE);
+                } else {
+                    mEmptyTextView.setVisibility(View.INVISIBLE);
+                }
             }
             return mTrailers.size();
         }
 
-        if(mTextView != null){
-            mTextView.setVisibility(View.VISIBLE);
-            mTextView.setText("Trailers not available");
+        if(mEmptyTextView != null){
+            mEmptyTextView.setVisibility(View.VISIBLE);
         }
 
         return 0;

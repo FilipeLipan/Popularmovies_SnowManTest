@@ -64,10 +64,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @Override
     public int getItemCount() {
         if (mCursor != null) {
-            if(mEmptyTextView != null && mCursor.getCount() == 0){
-                mEmptyTextView.setVisibility(View.VISIBLE);
-            }else {
-                mEmptyTextView.setVisibility(View.INVISIBLE);
+            if(mEmptyTextView != null) {
+                if (mCursor.getCount() == 0) {
+                    mEmptyTextView.setVisibility(View.VISIBLE);
+                } else {
+                    mEmptyTextView.setVisibility(View.INVISIBLE);
+                }
             }
             return mCursor.getCount();
         }
@@ -107,8 +109,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         @Override
         public void onClick(View view) {
 
-
-
             if (mContext.getResources().getBoolean(R.bool.is_tablet)) {
                 DetailFragment detailFragment = (DetailFragment) ((FragmentActivity) mContext)
                         .getSupportFragmentManager().findFragmentByTag(MainActivity.DETAIL_FRAGMENT);
@@ -130,8 +130,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                         .addToBackStack(null)
                         .commit();
             }
-
-
         }
 
     }

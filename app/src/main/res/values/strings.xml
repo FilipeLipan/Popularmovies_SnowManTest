@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Popular movies</string>
+
+
     <string name="empty">Empty</string>
+    <string name="empty_trailers">Empty</string>
+    <string name="empty_reviews">Empty</string>
+
     <string name="coudntRecoverMovies">couldn\'t recover the movies</string>
     <string name="retrofitError">Something went wrong, but retrofit did his work</string>
     <string name="somethingWentWrong">Something went wrong</string>

@@ -9,4 +9,8 @@ import java.util.ArrayList;
 public class Result {
     public ArrayList<Movie> results;
     public ArrayList<Trailer> youtube;
+
+    public ArrayList<Trailer> getYoutubeTrailers() {
+        return youtube;
+    }
 }

@@ -83,7 +83,8 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     @BindView(R.id.pb_detail_trailers) ProgressBar mProgressBarTrailers;
     @BindView(R.id.pb_detail_reviews) ProgressBar mProgressBarReviews;
     @BindView(R.id.toolbar) Toolbar mToolbar;
-
+    @BindView(R.id.tv_detail_empty_reviews) TextView mEmptyTextViewReviews;
+    @BindView(R.id.tv_detail_empty_trailers) TextView mEmptyTextViewTrailers;
 
     private Movie mMovie;
     private ArrayList<Trailer> mTrailers;
@@ -253,7 +254,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
                     return false;
                 }
             };
-
+            mTrailerAdapter.setEmptyTextView(mEmptyTextViewTrailers);
 
             LinearLayoutManager linearLayoutManagerReviews = new LinearLayoutManager(mContext) {
                 @Override
@@ -267,6 +268,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
             mReviewAdapter = new ReviewAdapter(mReviews, mContext);
             mRecyclerViewReviews.setLayoutManager(linearLayoutManagerReviews);
+            mReviewAdapter.setEmptyTextView(mEmptyTextViewReviews);
             mRecyclerViewReviews.setAdapter(mReviewAdapter);
 
             if(reloadReviewsAndTrailers) {
@@ -314,7 +316,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
                     } else {
                         if(response.body() != null) {
                             Result result = response.body();
-                            mTrailers = result.youtube;
+                            mTrailers = result.getYoutubeTrailers();
                             mTrailerAdapter.setTrailers(mTrailers);
                             mProgressBarTrailers.setVisibility(View.INVISIBLE);
                         }
@@ -364,7 +366,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
                 @Override
                 public void onFailure(Call<Reviews> call, Throwable t) {
-                    Log.e(TAG, "Something went wrong on retrofit, coming from retrofit on failure");
+                    Log.e(TAG, getString(R.string.retrofitError));
                 }
             });
         }

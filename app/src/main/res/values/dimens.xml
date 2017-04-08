@@ -3,7 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="empty_grid">20sp</dimen>
+    <dimen name="empty_grid">18sp</dimen>
 
     <dimen name="detail_margin_left">16dp</dimen>
     <dimen name="detail_margin_top">16dp</dimen>
