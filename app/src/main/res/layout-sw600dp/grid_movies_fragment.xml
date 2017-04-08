@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorAccentLight">
 
     <android.support.v7.widget.RecyclerView
@@ -13,5 +14,18 @@
         android:numColumns="auto_fit"
         android:layout_marginLeft="@dimen/margin_left_movie_grid_item"
         android:layout_marginRight="@dimen/margin_right_movie_grid_item"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/tv_main_grid_empty"
+        tools:text="@string/empty"
+        android:textSize="@dimen/empty_grid"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        />
 
 </RelativeLayout>

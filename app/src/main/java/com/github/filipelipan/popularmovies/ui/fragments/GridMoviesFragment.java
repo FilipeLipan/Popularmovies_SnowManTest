@@ -23,6 +23,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import com.github.filipelipan.popularmovies.R;
 import com.github.filipelipan.popularmovies.adapter.MovieAdapter;
 import com.github.filipelipan.popularmovies.data.MovieContract;
@@ -44,7 +46,11 @@ public class GridMoviesFragment extends Fragment implements LoaderManager.Loader
     public static final String KEY_OPERATION_TYPE = "key_operation_type";
     private static final String TAG = GridMoviesFragment.class.getSimpleName();
     private static final String KEY_IS_FIRST_TIME_OPEN = "key_first_time_open";
+
+
     @BindView(R.id.gv_main) RecyclerView mGridView;
+    @BindView(R.id.tv_main_grid_empty) TextView mEmptyTextView;
+
     private MovieAdapter mMovieAdapter;
     private Context mContext;
     private Toolbar mToolbar;
@@ -144,6 +150,7 @@ public class GridMoviesFragment extends Fragment implements LoaderManager.Loader
 
         mMovieAdapter = new MovieAdapter(null, mContext);
         mGridView.setLayoutManager(new GridLayoutManager(mContext, calculateNoOfColumns(mContext)));
+        mMovieAdapter.setEmptyTextView(mEmptyTextView);
         mGridView.setAdapter(mMovieAdapter);
 
         Bundle bundle = new Bundle();

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.github.filipelipan.popularmovies.R;
 import com.github.filipelipan.popularmovies.data.MovieContract;
@@ -28,6 +29,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     private Context mContext;
     private Cursor mCursor;
+    private TextView mEmptyTextView;
 
     public MovieAdapter(Cursor cursor, Context context) {
         mContext = context;
@@ -37,6 +39,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     public void swapCursor(Cursor newCursor) {
         mCursor = newCursor;
         notifyDataSetChanged();
+    }
+
+    /**
+     * set an empty view to be show when the recyclerView is empty
+     * @param textView empty TextView that will be shown when the recyclerView is empty
+     */
+    public void setEmptyTextView(TextView textView){
+        mEmptyTextView = textView;
     }
 
     @Override
@@ -53,25 +63,34 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        if (mCursor == null) {
-            return 0;
-        } else {
+        if (mCursor != null) {
+            if(mEmptyTextView != null && mCursor.getCount() == 0){
+                mEmptyTextView.setVisibility(View.VISIBLE);
+            }else {
+                mEmptyTextView.setVisibility(View.INVISIBLE);
+            }
             return mCursor.getCount();
         }
+
+        if(mEmptyTextView != null){
+            mEmptyTextView.setVisibility(View.VISIBLE);
+        }
+
+        return 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView mImageView;
 
-        public ViewHolder(View itemView) {
+        private ViewHolder(View itemView) {
             super(itemView);
             mImageView = (ImageView) itemView.findViewById(R.id.iv_list_item_poster);
 
             itemView.setOnClickListener(this);
         }
 
-        public void bindView(int position) {
+        private void bindView(int position) {
 
             int posterPathIndex = mCursor.getColumnIndex(MovieContract.MovieEntry.COLUM_POSTER_PATH);
             mCursor.moveToPosition(position);

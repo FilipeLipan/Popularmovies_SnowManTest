@@ -40,3 +40,4 @@ project.properties
 
 ##Gradle-based build
 build/
+/app/src/main/java/com/github/filipelipan/popularmovies/key/ApiKey.java
