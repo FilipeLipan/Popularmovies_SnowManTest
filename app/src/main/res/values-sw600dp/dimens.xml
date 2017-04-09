@@ -5,5 +5,7 @@
     <dimen name="margin_right_movie_grid_item">4dp</dimen>
     <dimen name="margin_left_movie_grid_item">4dp</dimen>
 
+    <dimen name="grid_list_item_height">300dp</dimen>
+
     <dimen name="empty_grid">25sp</dimen>
 </resources>

@@ -37,4 +37,7 @@
     <dimen name="list_item_small_imageView_width">30dp</dimen>
     <dimen name="list_item_small_imageView_height">30dp</dimen>
 
+
+    <dimen name="grid_list_item_height">200dp</dimen>
+
 </resources>

@@ -99,6 +99,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             String posterPath = mCursor.getString(posterPathIndex);
 
             String imgUrl = MoviesDbService.BASE_POSTER_URL + posterPath;
+
             Picasso.with(mContext)
                     .load(imgUrl)
                     .placeholder(VectorDrawableCompat.create(mContext.getResources(), R.drawable.load, null))
