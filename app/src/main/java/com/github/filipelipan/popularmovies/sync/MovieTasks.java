@@ -45,9 +45,6 @@ public class MovieTasks {
             downloadMovies(context, OperationType.TOP_RATED);
         }else if(ACTION_DOWNLOAD_MOST_POPULAR_MOVIES.equals(action)){
             downloadMovies(context , OperationType.MOST_POPULAR);
-
-            //Notifies user that new data has been downloaded
-            NotificationUtil.notifyUserOfNewPopularMovies(context);
         }
     }
 
@@ -82,15 +79,20 @@ public class MovieTasks {
                     if (response.body() != null) {
                         Result result = response.body();
 
+                        //delete all the movies inside the contentProvider
                         Uri deleteUri = MovieContract.MovieEntry.CONTENT_URI_MOVIES_BY_CLASSIFICATION;
                         deleteUri = deleteUri.buildUpon().appendEncodedPath(option + "").build();
                         context.getContentResolver().delete(deleteUri, null, null);
 
                         //insert movies into the content provider
                         Uri movieBulkInsertUri = MovieContract.MovieEntry.CONTENT_URI;
-                        ContentValues[] contentValues = buildContentValuesArrayFromMovies(result.results, option);
+                        ContentValues[] contentValues = buildContentValuesArrayFromMovies(result.getMovies(), option);
                         context.getContentResolver().bulkInsert(movieBulkInsertUri, contentValues);
 
+                        if((result.getMovies() != null) && (OperationType.MOST_POPULAR == option) && (result.getMovies().size() != 0)){
+                            //Notifies user that new data has been downloaded
+                            NotificationUtil.notifyUserOfNewPopularMovies(context, result.getMovies().get(0));
+                        }
 
                         //otto event that will notify fragments and activities that there is new data available
                         EventBus.getInstance().post(new RetrofitFinishLoadEvent("sucess"));

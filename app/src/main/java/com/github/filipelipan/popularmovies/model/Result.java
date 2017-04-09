@@ -13,4 +13,8 @@ public class Result {
     public ArrayList<Trailer> getYoutubeTrailers() {
         return youtube;
     }
+
+    public ArrayList<Movie> getMovies() {
+        return results;
+    }
 }
