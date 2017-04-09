@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
@@ -23,6 +24,8 @@ import com.github.filipelipan.popularmovies.ui.fragments.DetailFragment;
 import com.github.filipelipan.popularmovies.ui.fragments.GridMoviesFragment;
 import com.github.filipelipan.popularmovies.util.EventBus;
 import com.github.filipelipan.popularmovies.util.OperationType;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.squareup.otto.Subscribe;
 
 import butterknife.BindView;
@@ -31,6 +34,8 @@ import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String TAG = MainActivity.class.getSimpleName();
+    private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
     public static final String GRID_MOVIE_FRAGMENT = "grid_movie_fragment";
     public static final String DETAIL_FRAGMENT = "detail_fragment";
@@ -39,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
     private DetailFragment mDetailFragment;
     private NetworkConnectReceiver mReceiver = new NetworkConnectReceiver();
     private boolean mConnectionHasChanged = false;
+
+    private boolean mIsFirstTimeOpen = true;
+    private static final String KEY_IS_FIRST_TIME_OPEN = "key_first_time_open";
 
     @BindView(R.id.main_activity_snackbar_place_holder)
     RelativeLayout mRelativeLayout;
@@ -57,7 +65,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        if(savedInstanceState !=null ){
+            if(savedInstanceState.containsKey(KEY_IS_FIRST_TIME_OPEN)){
+                mIsFirstTimeOpen = savedInstanceState.getBoolean(KEY_IS_FIRST_TIME_OPEN);
+            }
+        }
+
         CustomActivityOnCrash.install(this);
+
+        if(mIsFirstTimeOpen){
+            checkPlayServices();
+        }
 
         // is tablet receive true if the smaller screen is equal to 600dp
         boolean isTablet = getResources().getBoolean(R.bool.is_tablet);
@@ -146,6 +164,13 @@ public class MainActivity extends AppCompatActivity {
         EventBus.getInstance().unregister(this);
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mIsFirstTimeOpen = false;
+        outState.putBoolean(KEY_IS_FIRST_TIME_OPEN, mIsFirstTimeOpen);
+    }
+
     /**
      * This method will be call when retrofit finishes, it will make gridMoviesFragment load the new data
      *
@@ -183,6 +208,29 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+
+    /**
+     * Check the device to make sure it has the Google Play Services APK. If
+     * it doesn't, display a dialog that allows users to download the APK from
+     * the Google Play Store or enable it in the device's system settings.
+     */
+    private boolean checkPlayServices() {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(this, resultCode,
+                        PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            } else {
+                Log.i(TAG, "This device is not supported.");
+                finish();
+            }
+            return false;
+        }
+        return true;
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

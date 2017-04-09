@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'com.google.gms.google-services'
+
 apply plugin: 'com.jakewharton.butterknife'
 
 android {
@@ -39,6 +41,7 @@ dependencies {
     //retrofit  http://square.github.io/retrofit/
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:+'
+
 
     //picasso http://square.github.io/picasso/
     compile 'com.squareup.picasso:picasso:2.5.2'

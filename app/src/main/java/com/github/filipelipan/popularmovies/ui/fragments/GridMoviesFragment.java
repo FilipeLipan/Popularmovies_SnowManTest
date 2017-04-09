@@ -133,7 +133,7 @@ public class GridMoviesFragment extends Fragment implements LoaderManager.Loader
 
         if(savedInstanceState !=null ){
             if(savedInstanceState.containsKey(KEY_IS_FIRST_TIME_OPEN)){
-                mIsFirstTimeOpen = savedInstanceState.getBoolean(KEY_OPERATION_TYPE);
+                mIsFirstTimeOpen = savedInstanceState.getBoolean(KEY_IS_FIRST_TIME_OPEN);
             }
         }
 

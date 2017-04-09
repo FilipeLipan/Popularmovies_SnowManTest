@@ -45,6 +45,8 @@ public class MovieTasks {
             downloadMovies(context, OperationType.TOP_RATED);
         }else if(ACTION_DOWNLOAD_MOST_POPULAR_MOVIES.equals(action)){
             downloadMovies(context , OperationType.MOST_POPULAR);
+
+            //Notifies user that new data has been downloaded
             NotificationUtil.notifyUserOfNewPopularMovies(context);
         }
     }

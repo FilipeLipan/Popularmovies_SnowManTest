@@ -96,6 +96,5 @@ public class PopularMoviesSyncUtils {
     public static void startImmediateSync(@NonNull final Context context) {
         Intent intentToSyncImmediately = new Intent(context, PopularMoviesSyncIntentService.class);
         context.startService(intentToSyncImmediately);
-
     }
 }
