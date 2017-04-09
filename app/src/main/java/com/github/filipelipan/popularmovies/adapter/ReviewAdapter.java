@@ -1,19 +1,10 @@
 package com.github.filipelipan.popularmovies.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
-import android.transition.ChangeBounds;
-import android.transition.Scene;
-import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.filipelipan.popularmovies.R;

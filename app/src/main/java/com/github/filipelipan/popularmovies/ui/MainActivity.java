@@ -17,14 +17,17 @@ import android.widget.RelativeLayout;
 
 import com.github.filipelipan.popularmovies.R;
 import com.github.filipelipan.popularmovies.broadcastreceiver.NetworkConnectReceiver;
+import com.github.filipelipan.popularmovies.event.RetrofitFinishLoadEvent;
 import com.github.filipelipan.popularmovies.sync.PopularMoviesSyncUtils;
 import com.github.filipelipan.popularmovies.ui.fragments.DetailFragment;
 import com.github.filipelipan.popularmovies.ui.fragments.GridMoviesFragment;
+import com.github.filipelipan.popularmovies.util.EventBus;
 import com.github.filipelipan.popularmovies.util.OperationType;
-import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
+import com.squareup.otto.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.main_activity_snackbar_place_holder)
     RelativeLayout mRelativeLayout;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        //register the activity to receive an event when retrofit finishes loading
+        EventBus.getInstance().register(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,8 +114,8 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.add(R.id.ph_main_activity, mGridMoviesFragment, GRID_MOVIE_FRAGMENT);
                 fragmentTransaction.commit();
             }
-
         }
+
     }
 
     @Override
@@ -123,10 +134,30 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        /*
-        *  unregister inside onPause, preventing the receiver to live outside our app
-        */
+        // unregister inside onPause, preventing the receiver to live outside our app
         unregisterReceiver(mReceiver);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        //unregister the activity to receive an event when retrofit finishes loading
+        EventBus.getInstance().unregister(this);
+    }
+
+    /**
+     * This method will be call when retrofit finishes, it will make gridMoviesFragment load the new data
+     *
+     * @param event a class that store messages coming from the event
+     */
+    @Subscribe
+    public void onRetrofitFinishLoading(RetrofitFinishLoadEvent event){
+
+        //reset GridMoviesFragment loader
+        mGridMoviesFragment = (GridMoviesFragment) getSupportFragmentManager()
+                .findFragmentByTag(GRID_MOVIE_FRAGMENT);
+        mGridMoviesFragment.loadMovies(OperationType.MOST_POPULAR);
     }
 
     /**

@@ -107,6 +107,7 @@ public class GridMoviesFragment extends Fragment implements LoaderManager.Loader
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         mMovieAdapter.swapCursor(data);
         if(data.getCount() > 0) {
+            //if it is tablet, load de detail fragment with the first movie on the list
             if (mContext.getResources().getBoolean(R.bool.is_tablet)) {
                 DetailFragment detailFragment = (DetailFragment) ((FragmentActivity) mContext)
                         .getSupportFragmentManager().findFragmentByTag(MainActivity.DETAIL_FRAGMENT);
@@ -153,6 +154,7 @@ public class GridMoviesFragment extends Fragment implements LoaderManager.Loader
         mMovieAdapter.setEmptyTextView(mEmptyTextView);
         mGridView.setAdapter(mMovieAdapter);
 
+        //stating the loader
         Bundle bundle = new Bundle();
         bundle.putInt(KEY_OPERATION_TYPE, OperationType.MOST_POPULAR);
         ((FragmentActivity)mContext).getSupportLoaderManager().initLoader(ID_POPULAR_MOVIES_LOADER, bundle, this);

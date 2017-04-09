@@ -45,11 +45,11 @@ public class PopularMoviesSyncUtils {
         Job syncPopularMoviesJob = dispatcher.newJobBuilder()
                 .setService(DownloadMoviesFirebaseJobService.class)
                 .setTag(POPULAR_MOVIES_SYNC_TAG)
-                .setConstraints(Constraint.ON_UNMETERED_NETWORK)
+                .setConstraints(Constraint.ON_ANY_NETWORK)
                 .setLifetime(Lifetime.FOREVER)
                 .setRecurring(true)
                 .setTrigger(Trigger.executionWindow(
-                        SYNC_INTERVAL_SECONDS,
+                        SYNC_INTERVAL_HOURS,
                         SYNC_INTERVAL_SECONDS + SYNC_FLEXTIME_SECONDS))
                 .setReplaceCurrent(true)
                 .build();
@@ -96,5 +96,6 @@ public class PopularMoviesSyncUtils {
     public static void startImmediateSync(@NonNull final Context context) {
         Intent intentToSyncImmediately = new Intent(context, PopularMoviesSyncIntentService.class);
         context.startService(intentToSyncImmediately);
+
     }
 }

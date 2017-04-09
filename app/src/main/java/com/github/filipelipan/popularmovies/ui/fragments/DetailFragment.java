@@ -385,23 +385,27 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     public void favorited(){
         toggleFavoriteFAB();
 
-        ContentValues contentValues = buildContentValuesFromMovie(mMovie, OperationType.FAVORITE);
+        if(mMovie != null) {
+            ContentValues contentValues = buildContentValuesFromMovie(mMovie, OperationType.FAVORITE);
 
-        Uri uri = MovieContract.MovieEntry.CONTENT_URI;
-        mContext.getContentResolver().insert(uri, contentValues);
+            Uri uri = MovieContract.MovieEntry.CONTENT_URI;
+            mContext.getContentResolver().insert(uri, contentValues);
+        }
     }
 
     @OnClick(R.id.fab_favorite_selected)
     public void unFavorited(){
         toggleFavoriteFAB();
 
-        Uri uri = MovieContract.MovieEntry.CONTENT_URI_MOVIES_BY_CLASSIFICATION;
-        uri = uri.buildUpon().appendEncodedPath(OperationType.FAVORITE + "")
-                .appendEncodedPath(mMovie.getId() + "").build();
+        if(mMovie != null) {
+            Uri uri = MovieContract.MovieEntry.CONTENT_URI_MOVIES_BY_CLASSIFICATION;
+            uri = uri.buildUpon().appendEncodedPath(OperationType.FAVORITE + "")
+                    .appendEncodedPath(mMovie.getId() + "").build();
 
-        mContext.getContentResolver().delete(uri,
-                null,
-                null);
+            mContext.getContentResolver().delete(uri,
+                    null,
+                    null);
+        }
     }
 
     //toggle progressBar visibility

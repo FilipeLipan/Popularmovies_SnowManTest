@@ -3,8 +3,9 @@ package com.github.filipelipan.popularmovies.data;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.github.filipelipan.popularmovies.data.MovieContract.MovieEntry;
+
 import com.github.filipelipan.popularmovies.data.MovieContract.ClassificationEntry;
+import com.github.filipelipan.popularmovies.data.MovieContract.MovieEntry;
 
 /**
  * Created by lispa on 18/02/2017.

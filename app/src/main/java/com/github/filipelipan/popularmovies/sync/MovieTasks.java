@@ -7,9 +7,12 @@ import android.util.Log;
 
 import com.github.filipelipan.popularmovies.R;
 import com.github.filipelipan.popularmovies.data.MovieContract;
+import com.github.filipelipan.popularmovies.event.RetrofitFinishLoadEvent;
 import com.github.filipelipan.popularmovies.model.Movie;
 import com.github.filipelipan.popularmovies.model.Result;
 import com.github.filipelipan.popularmovies.moviedb.MoviesDbService;
+import com.github.filipelipan.popularmovies.util.EventBus;
+import com.github.filipelipan.popularmovies.util.NotificationUtil;
 import com.github.filipelipan.popularmovies.util.OperationType;
 
 import java.util.ArrayList;
@@ -31,7 +34,6 @@ public class MovieTasks {
     public static final String ACTION_DOWNLOAD_TOP_RATED_MOVIES = "download-top-rated-movies";
     public static final String ACTION_DOWNLOAD_MOST_POPULAR_MOVIES = "download-most-popular-movies";
 
-
     /**
      * receive a context and an action and execute the required action
      *
@@ -43,9 +45,9 @@ public class MovieTasks {
             downloadMovies(context, OperationType.TOP_RATED);
         }else if(ACTION_DOWNLOAD_MOST_POPULAR_MOVIES.equals(action)){
             downloadMovies(context , OperationType.MOST_POPULAR);
+            NotificationUtil.notifyUserOfNewPopularMovies(context);
         }
     }
-
 
     /**
      * Receive movies from the webservice and put the downloaded movies inside the content provider
@@ -86,11 +88,13 @@ public class MovieTasks {
                         Uri movieBulkInsertUri = MovieContract.MovieEntry.CONTENT_URI;
                         ContentValues[] contentValues = buildContentValuesArrayFromMovies(result.results, option);
                         context.getContentResolver().bulkInsert(movieBulkInsertUri, contentValues);
+
+
+                        //otto event that will notify fragments and activities that there is new data available
+                        EventBus.getInstance().post(new RetrofitFinishLoadEvent("sucess"));
                     }
                 }
-
             }
-
 
             @Override
             public void onFailure(Call<Result> call, Throwable t) {

@@ -3,8 +3,6 @@ package com.github.filipelipan.popularmovies.sync;
 import android.app.IntentService;
 import android.content.Intent;
 
-import com.github.filipelipan.popularmovies.util.OperationType;
-
 /**
  * Created by lispa on 21/02/2017.
  */
