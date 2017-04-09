@@ -109,6 +109,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         @Override
         public void onClick(View view) {
 
+            //if it is a table, set the variable movie inside the fragment
+            //else create a new fragment and send the selected movie trough a bundle
             if (mContext.getResources().getBoolean(R.bool.is_tablet)) {
                 DetailFragment detailFragment = (DetailFragment) ((FragmentActivity) mContext)
                         .getSupportFragmentManager().findFragmentByTag(MainActivity.DETAIL_FRAGMENT);

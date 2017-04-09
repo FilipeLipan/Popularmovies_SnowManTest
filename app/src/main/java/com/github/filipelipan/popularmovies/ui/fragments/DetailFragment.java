@@ -67,7 +67,6 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     public static final String KEY_MOVIE_SAVED_INSTANCE = "key-movie-saved-instance";
     public static final String KEY_REVIEWS_SAVED_INSTANCE = "key-reviews-saved-instance";
     public static final String KEY_TRAILERS_SAVED_INSTANCE = "key-trailers-saved-instance";
-    private static final String KEY_ISFIRSTTIMEOPEN = "key_first_time_open";
 
     @BindView(R.id.tv_year)         TextView mTextViewDate;
     @BindView(R.id.tv_overview)     TextView mTextViewOverView;
@@ -92,7 +91,6 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     private TrailerAdapter mTrailerAdapter;
     private ReviewAdapter mReviewAdapter;
     private Context mContext;
-    private boolean mIsFirstTimeOpen = true;
 
     @Override
     public void onAttach(Context context) {
@@ -176,36 +174,37 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
                 setUp(mMovie, false);
             }
 
-            if(savedInstanceState.containsKey(KEY_ISFIRSTTIMEOPEN)){
-                mIsFirstTimeOpen = savedInstanceState.getBoolean(KEY_ISFIRSTTIMEOPEN);
-            }
-
             savedInstanceState.clear();
         }
 
         Bundle bundle = this.getArguments();
-        if(bundle != null && mMovie == null) {
-            mMovie = bundle.getParcelable(Movie.PASSING_MOVIE);
 
-            ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
+        if(!mContext.getResources().getBoolean(R.bool.is_tablet)) {
 
-            if(!mContext.getResources().getBoolean(R.bool.is_tablet)) {
-                ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                setHasOptionsMenu(true);
+            // if its a phone get the bundle an set the movie
+            if(bundle != null) {
+                if (bundle.containsKey(Movie.PASSING_MOVIE)) {
+                    mMovie = bundle.getParcelable(Movie.PASSING_MOVIE);
+                    setUp(mMovie, true);
+                }
             }
-            setUp(mMovie, true);
+
+            // if it is a phone show the detail menus and set setDisplayHomeAsUpEnabled
+            ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            setHasOptionsMenu(true);
+
         }
+
         return view;
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        mIsFirstTimeOpen = false;
         outState.putParcelable(KEY_MOVIE_SAVED_INSTANCE, mMovie);
         outState.putParcelableArrayList(KEY_REVIEWS_SAVED_INSTANCE, mReviews);
         outState.putParcelableArrayList(KEY_TRAILERS_SAVED_INSTANCE, mTrailers);
-        outState.putBoolean(KEY_ISFIRSTTIMEOPEN, mIsFirstTimeOpen);
     }
 
     @Override
@@ -219,6 +218,16 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         return false;
     }
 
+    /**
+     *  set up the views with information deliver by the movie parameter, reloadReviewsAndTrailers
+     *  will decide if there's is need to reload the trailers and reviews, to avoid unnecessary
+     *  downloads when android changes between lifecycle's
+     *
+     * @param movie this variable will be use to set up the fragment
+     * @param reloadReviewsAndTrailers if true the fragment will download the trailers and reviews
+     *                                  again, otherwise the method will use the trailers and reviews
+     *                                 from the member variables
+     */
     public void setUp(Movie movie, boolean reloadReviewsAndTrailers){
         mMovie = movie;
         if(mMovie != null) {
