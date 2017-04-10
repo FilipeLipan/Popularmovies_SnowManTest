@@ -2,9 +2,13 @@
     <string name="app_name">Popular movies</string>
 
 
-    <string name="empty">Empty</string>
-    <string name="empty_trailers">Empty</string>
-    <string name="empty_reviews">Empty</string>
+    <string name="empty">Movies not available</string>
+    <string name="empty_trailers">Trailers not available</string>
+    <string name="empty_reviews">Reviews not available</string>
+    <string name="notificationText">Is now the most popular movie! Check it out!</string>
+    <string name="network_disconnected">Network is disconnected</string>
+    <string name="network_connected">Network is connected</string>
+    <string name="need_browser_warning">You need a browser to open this</string>
 
     <string name="coudntRecoverMovies">couldn\'t recover the movies</string>
     <string name="retrofitError">Something went wrong, but retrofit did his work</string>
@@ -12,10 +16,9 @@
     <string name="noConnectionAvailable">No connection available</string>
     <string name="trailers_label">Trailers</string>
     <string name="reviews">Reviews</string>
-    <string name="need_browser_warning">You need a browser to open this</string>
-    <string name="network_connected">Network is connected</string>
-    <string name="network_disconnected">Network is disconnected</string>
-    <string name="notificationText">Is now the most popular movie! Check it out!</string>
+
+
+
 
 
     <!-- content provider authorities -->
