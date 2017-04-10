@@ -23,46 +23,58 @@ public class NotificationUtil {
 
     private static final int POPULAR_MOVIES_NOTIFICATION_ID = 30165;
 
+    private static final String MOST_POPULAR_MOVIE_ID = "most_popular_movie_id";
+
     /**
      * Constructs and displays a notification for the newly updated movies data.
      *
      * @param context Context used to query our ContentProvider and use various Utility methods
      */
-    public static void notifyUserOfNewPopularMovies(Context context, Movie movie){
+    public static void notifyUserOfNewPopularMovies(Context context, Movie movie) {
 
-        if(movie != null) {
+        if (movie != null) {
 
-            String notificationTitle = movie.getOriginalTitle();
-            String notificationText = context.getString(R.string.notificationText);
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+            int last_most_popular_movie_id = sharedPreferences.getInt(MOST_POPULAR_MOVIE_ID, 0);
 
-            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
-                    .setColor(ContextCompat.getColor(context, R.color.colorAccentLight))
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setContentTitle(notificationTitle)
-                    .setContentText(notificationText)
-                    .setAutoCancel(true);
+            //if the most popular movie has changed show a notification
+            //this if will make the notification less annoying
+            if (last_most_popular_movie_id != movie.getId()) {
 
-            //create intent for the notification
-            Intent startMainActivity = new Intent(context, MainActivity.class);
+                //store the movie id so we can compare with the next movie
+                SharedPreferences.Editor sp = PreferenceManager.getDefaultSharedPreferences(context).edit();
+                sp.putInt(MOST_POPULAR_MOVIE_ID, movie.getId());
+                sp.commit();
 
-            //set up the pending intent for the notification
-            TaskStackBuilder taskStackBuilder = TaskStackBuilder.create(context);
-            taskStackBuilder.addNextIntentWithParentStack(startMainActivity);
-            PendingIntent startMainActivityPendingIntent = taskStackBuilder
-                    .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                String notificationTitle = movie.getOriginalTitle();
+                String notificationText = context.getString(R.string.notificationText);
 
-            //insert the pending intent
-            notificationBuilder.setContentIntent(startMainActivityPendingIntent);
+                NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
+                        .setColor(ContextCompat.getColor(context, R.color.colorAccentLight))
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle(notificationTitle)
+                        .setContentText(notificationText)
+                        .setAutoCancel(true);
+
+                //create intent for the notification
+                Intent startMainActivity = new Intent(context, MainActivity.class);
+
+                //set up the pending intent for the notification
+                TaskStackBuilder taskStackBuilder = TaskStackBuilder.create(context);
+                taskStackBuilder.addNextIntentWithParentStack(startMainActivity);
+                PendingIntent startMainActivityPendingIntent = taskStackBuilder
+                        .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                //insert the pending intent
+                notificationBuilder.setContentIntent(startMainActivityPendingIntent);
 
 
-            NotificationManager notificationManager = (NotificationManager)
-                    context.getSystemService(context.NOTIFICATION_SERVICE);
+                NotificationManager notificationManager = (NotificationManager)
+                        context.getSystemService(context.NOTIFICATION_SERVICE);
 
-            notificationManager.notify(POPULAR_MOVIES_NOTIFICATION_ID, notificationBuilder.build());
+                notificationManager.notify(POPULAR_MOVIES_NOTIFICATION_ID, notificationBuilder.build());
 
-            SharedPreferences.Editor sp = PreferenceManager.getDefaultSharedPreferences(context).edit();
-
-            sp.apply();
+            }
         }
 
     }
