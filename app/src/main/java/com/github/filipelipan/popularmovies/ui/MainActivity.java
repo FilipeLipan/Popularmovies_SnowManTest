@@ -30,7 +30,6 @@ import com.squareup.otto.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,8 +69,6 @@ public class MainActivity extends AppCompatActivity {
                 mIsFirstTimeOpen = savedInstanceState.getBoolean(KEY_IS_FIRST_TIME_OPEN);
             }
         }
-
-        CustomActivityOnCrash.install(this);
 
         if(mIsFirstTimeOpen){
             checkPlayServices();

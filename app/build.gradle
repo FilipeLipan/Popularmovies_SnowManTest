@@ -46,18 +46,17 @@ dependencies {
     //picasso http://square.github.io/picasso/
     compile 'com.squareup.picasso:picasso:2.5.2'
 
+    //Está biblioteca está desativa, no lugar dela é recomendável ultilizar RxAndroid porém ainda
+    // não tenho conheço suficiente para utilizá-lo
     //https://github.com/square/otto
     compile 'com.squareup:otto:1.3.8'
+
 
     //butterknife https://github.com/JakeWharton/butterknife
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 
-
     //firebase job dispatcher https://github.com/firebase/firebase-jobdispatcher-android
     compile 'com.firebase:firebase-jobdispatcher:0.5.0'
-
-    //error handler https://github.com/Ereza/CustomActivityOnCrash
-    compile 'cat.ereza:customactivityoncrash:1.5.0'
 
 }
