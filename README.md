@@ -1,4 +1,4 @@
-# Popularmovies Stage 2
+# Popularmovies
 An android app that consumes the [**moviedb api**](https://www.themoviedb.org/documentation/api), showing a grid of popular and top rated movies
 
 # Installation
